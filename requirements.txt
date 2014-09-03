@@ -1,0 +1,16 @@
+Django==1.7c3
+Jinja2==2.7.3
+MarkupSafe==0.23
+Pillow==2.5.3
+Unidecode==0.04.16
+argparse==1.2.1
+awesome-slugify==1.6
+django-bootstrap3==4.11.0
+django-geojson==2.6.0
+django-nvd3==0.7.4
+nodeenv==0.11.0
+psycopg2==2.5.4
+python-nvd3==0.12.2
+regex==2014.08.28
+six==1.7.3
+wsgiref==0.1.2
