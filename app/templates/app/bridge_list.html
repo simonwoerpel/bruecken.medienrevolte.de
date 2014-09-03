@@ -1,0 +1,43 @@
+{% extends 'app.html' %}
+
+{% block app %}
+
+<h1>EEG-Anlagenstammdaten</h1>
+
+<h2>Zufällige Datensätze aus 2012</h2>
+
+
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th>Besitzer</th><th>Betreiber</th><th>Ort</th><th>PLZ</th><th>Bundesland</th><th>Typ</th><th>Energieleistung</th>
+        </tr>    
+    </thead>
+{% for plant in plants %}
+
+    <tbody>
+        <tr>
+            <td>{{ plant.owner }}</td><td>{{ plant.operator }}</td><td>{{ plant.location }}</td><td>{{ plant.plz }}</td><td>{{ plant.state }}</td><td>{{ plant.power_carrier }}</td><td>{{ plant.power }}kWh</td><td><a href="{{ plant.get_absolute_url }}">Details</a></td>
+        </tr>
+    </tbody>
+{% endfor %}
+</table>
+
+    {% if is_paginated %}
+        <section class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </section>
+    {% endif %}
+
+
+{% endblock %}

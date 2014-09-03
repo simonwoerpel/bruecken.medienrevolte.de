@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Karte mit allen Bahn-Brücken
+{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'leaflet/dist/leaflet.css' %}" />
+<link rel="stylesheet" href="{% static 'leaflet.fullscreen/Control.FullScreen.css' %}" />
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'leaflet/dist/leaflet.js' %}"></script>
+<script src="{% static 'leaflet.fullscreen/Control.FullScreen.js' %}"></script>
+<script src="{% static 'geo/js/leaflet_index_map.js' %}"></script>
+
+<script type="text/javascript">
+
+    initmap();
+
+</script>
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <h1>Die maroden Brücken der Bahn</h1>
+    
+        <div id="map_index" class="map"></div>
+    </div>
+
+
+
+{% endblock content %}
+
+
+
+

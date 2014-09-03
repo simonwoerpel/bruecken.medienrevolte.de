@@ -1,0 +1,43 @@
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th>Zustand</th><th>Bundesland</th><th>Netzsegment</th><th>Streckenabschnitt</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in objects %}
+            <tr class="{{ object.status.bootstrap_flag }}">
+                <td>
+                    <span class="label label-{{ object.status.bootstrap_flag }}">
+                        {{ object.status }}
+                    </span> 
+                </td>
+                <td>
+                    <a href="{{ object.state.get_absolute_url }}">{{ object.state }}</a> 
+                </td>
+                <td>
+                    <a href="{{ object.segment.get_absolute_url }}">{{ object.segment }}</a> 
+                </td>
+                <td>
+                    <a href="{{ object.route.get_absolute_url }}">{{ object.route }}</a> 
+                </td>
+                <td>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <a href="{{ object.get_absolute_url }}">Ansehen</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <p class="small">Seite {{ objects.number }} von {{ objects.paginator.num_pages }}.</p>
+    <ul class="pager">
+        {% if objects.has_previous %}
+            <li><a href="?p={{ objects.previous_page_number }}">zurück</a></li>
+        {% endif %}
+
+        {% if objects.has_next %}
+            <li><a href="?p={{ objects.next_page_number }}">vor</a></li>
+        {% endif %}
+    </ul>
+</div>

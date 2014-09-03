@@ -1,0 +1,20 @@
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th>In der Nähe</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in object_list %}
+            <tr>
+                <td class="{{ object.status.bootstrap_flag }}">
+                    <span class="label label-{{ object.status.bootstrap_flag }}">Brücke</span> 
+                    <a href="{{ object.get_absolute_url }}">
+                        #{{ object.route }} {{ object.segment }}
+                    </a> 
+                    ({{ object.distance.km|floatformat:1 }} km)
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

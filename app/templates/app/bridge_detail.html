@@ -1,0 +1,64 @@
+{% extends 'app.html' %}
+
+{% load static geo_tags %}
+
+{% block title %}
+    Eine Brücke in {{ object.state }} mit dem Zustand: {{ object.status }}
+{% endblock title %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript"
+  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDwjWqCKNyy7QAjixWaPGwtDDhoqqt30N0&sensor=false">
+</script>
+
+<script type="text/javascript">
+        var mapOptions = {
+          center: new google.maps.LatLng({{ object.get_googlemap }}),
+          zoom: 19,
+          mapTypeId: google.maps.MapTypeId.SATELLITE
+        };
+        var map = new google.maps.Map(document.getElementById("map_{{ object.id }}"),
+            mapOptions);
+
+</script>
+
+
+{% endblock extra_js %}
+
+{% block app %}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>Abschnitt {{ object.route }} {{ object.segment }}
+            <span class="label label-{{ object.status.bootstrap_flag }}">{{ object.status }}</span></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-9">
+        <div id="map_{{ object.id }}" class="map"></div>
+    </div>
+    <div class="col-md-3">
+        <table class="table table-stripped">
+            <thead>
+                <tr><th>Diese Brücke</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><a href="{{ object.state.get_absolute_url }}">{{ object.state }}</a></td></tr>
+                <tr class="{{ object.status.bootstrap_flag }}">
+                    <td>Zustand: <a href="{{ object.status.get_absolute_url }}">{{ object.status }}</a></td>
+                </tr>
+                <tr><td>Netzsegment: <a href="{{ object.segment.get_absolute_url }}">{{ object.segment }}</a></td></tr>
+                <tr><td>Streckenabschnitt: <a href="{{ object.route.get_absolute_url }}">{{ object.route }}</a></td></tr>
+            </tbody>
+        </table>
+        <div>
+            {% nearby object 15 %}
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

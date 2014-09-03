@@ -1,0 +1,32 @@
+<table class="table table-stripped">
+
+{% if landscape %}
+
+    <thead>
+        <tr>
+        {% for field in fields %}
+            <th>{{ field.name }}</th>
+        {% endfor %}
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+        {% for field in fields %}
+            <td>{{ field.value }}</td>
+        {% endfor %}
+        </tr>
+    </tbody>
+    
+
+{% else %}
+    {% for field in fields %}
+    <tr>
+        <th>{{ field.name }}</th>
+        <td>{{ field.value|default_if_none:"" }}</td>
+    </tr>
+    {% endfor %}
+    
+{% endif %}
+    
+</table>

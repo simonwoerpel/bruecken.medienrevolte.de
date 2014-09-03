@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% load static dynamic_view_tags %}
+
+{% block menu %}
+    
+{% endblock menu %}
+
+{% block title %}
+    Startseite
+{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'theme/css/index.css' %}" />
+{% endblock %}
+
+
+{% block extra_js %}
+
+
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- Full Width Image Header -->
+    <header class="header-image">
+        <div class="headline">
+            <div class="container">
+                <h1>Marode Brücken</h1>
+                <h2><a href="#ueber">in der Satellitenansicht</span></a></h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <hr class="featurette-divider">
+
+        <!-- First Featurette -->
+        <div class="featurette" id="ueber">
+            <img class="featurette-image img-circle img-responsive pull-right" src="{% static 'theme/img/marode.png' %}">
+            <h2 class="featurette-heading">Rostige Brücken,
+                <span class="text-muted">verständliche Daten.</span>
+            </h2>
+            <p class="lead">...dank <a href="http://zeit.de">Zeit Online</a>, möchte man sagen. Denn die werten Kollegen haben über die <a href="http://www.zeit.de/mobilitaet/2014-09/deutsche-bahn-bruecken-zustand">maroden Brücken der Bahn</a> recherchiert und dabei <a href="https://docs.google.com/spreadsheets/d/1z2zpPexIcGagV9qGeeIRct0u5BfMOdHut6vKl2nY8rk/edit#gid=252127531">ihren wunderbaren Datensatz</a> gleich noch der Allgemeinheit zur Verfügung gestellt. Damit wir nicht das gleiche Problem wie die Zeit-Redakteure haben, <a href="http://blog.zeit.de/open-data/2014/09/02/deutsche-bahn-bruecken-daten/">die die Daten relativ mühsam und aufwendig zusammentragen mussten</a>. Das ist richtig Open Data und sehr fair von euch.</p>
+            <p class="lead">
+                <a href="http://twitter.com/simonwoerpel">Mich</a> hatte dann schnell interessiert, wie die maroden Brücken wohl von oben aussehen, und dank Google Maps ist das ja heutzutage kein Problem. Ein bisschen <a href="http://djangoproject.com">Django</a> und <a href="http://leafletjs.com">leaflet.js</a> und – ach ja, das hässliche Bootstrap-Standard-Design – und schon ist jede Brücke aus der Satellitenperspektive zu sehen. Zugegeben, ich hatte mir mehr Rost erhofft.
+            </p>
+            <p class="lead">
+                Ich wage hiermit, spontan angeregt durch das tolle Projekt von Zeit Online, mein erstes <a href="https://twitter.com/search?q=%23ddj&src=typd">Datenjournalismus</a>-Projekt in in die weite Welt hinauszuschießen und freue mich über <a href="mailto:simon.woerpel@gmail.com">Tipps und Anregungen</a> jeder Art.</p>
+        </div>
+        <div class="row" id="bruecken">
+            <div class="col-md-12">
+            <h1>Ein paar zufällig ausgewählte Eisenbahnbrücken.</h1>
+            <p class="lead">Oder direkt zur <a href="/karte/">Karte</a>.</p>
+            {% object_table random=True %}
+            </div>
+        </div>
+
+        
+        
+        <hr class="featurette-divider">
+
+</div>
+
+
+
+{% endblock content %}

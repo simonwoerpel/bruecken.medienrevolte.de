@@ -1,0 +1,26 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#other_instances">
+          <strong>Andere {{ name_plural }}</strong>
+        </a>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </h4>
+    </div>
+    <div id="other_instances" class="panel-collapse collapse">
+      <div class="panel-body">
+        <table class="table table-stripped">
+            <tbody>
+                {% for instance in instances %}
+                    <tr><td><a href="{{ instance.get_absolute_url }}">{{ instance.name }}</a> 
+                        <span class="badge">{{ instance.bridge_set.count }}</span></td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+

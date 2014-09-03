@@ -1,0 +1,42 @@
+{% extends 'app.html' %}
+
+{% load dynamic_view_tags %}
+
+{% block title %}
+    {{ object_name }}: {{ object.name }}
+{% endblock title %}
+
+
+{% block extra_js %}
+    {% for js in chart_js %}
+        {{ js }}
+    {% endfor %}
+{% endblock %}
+
+{% block app %}
+
+<div class="row">
+    <h1>{{ object_name }}: {{ object }}</h1>
+    <p>{{ object_type }}</p>
+    <div class="col-sm-6">
+        <p><strong>Daten</strong></p>
+        {% get_table_for_instance object %}
+    </div>
+    <div class="col-sm-6">
+        {% get_other_instances object 20 %}
+    </div>
+</div>
+<div class="row">
+    {% comment %}
+        <h1>Diagramme</h1>
+        {% for chart in chart_divs %}
+            <div class="col-sm-4">{{ chart }}</div>
+        {% endfor %}
+    {% endcomment %}
+    <div class="col-md-12">
+        <h1>Die Brücken</h1>
+        {% object_table object %}
+    </div>
+</div>
+
+{% endblock %}
