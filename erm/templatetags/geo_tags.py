@@ -30,6 +30,7 @@ def nearby(instance, n=10):
         ref = instance.geom
         return {'object_list': RootModel.objects
                                .exclude(geom__isnull=True)
+                               .exclude(id=instance.id)
                                .filter(geom__distance_lte=(ref, D(km=100)))
                                .distance(ref).order_by('distance')[1:n+1],
         }

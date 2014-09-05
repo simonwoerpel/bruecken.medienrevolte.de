@@ -102,6 +102,10 @@ class Converter(object):
 
         d['geom'] = makepoint(instance)
 
+        # slug
+        slug = u'%s-%s-%s' % (unicode(instance.segment), instance.route, instance.id)
+        d['slug'] = slugify(slug)
+
         ### end of extra operations ###
 
         return d

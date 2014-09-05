@@ -9,10 +9,10 @@
             <tr>
                 <td class="{{ object.status.bootstrap_flag }}">
                     <span class="label label-{{ object.status.bootstrap_flag }}">Brücke</span> 
+                    ({{ object.distance.km|floatformat:2 }} km)
                     <a href="{{ object.get_absolute_url }}">
                         #{{ object.route }} {{ object.segment }}
                     </a> 
-                    ({{ object.distance.km|floatformat:1 }} km)
                 </td>
             </tr>
         {% endfor %}

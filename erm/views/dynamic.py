@@ -8,6 +8,7 @@ Created on Thu Aug 14 20:56:23 2014
 
 
 from django.http import Http404
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.contenttypes.models import ContentType
 from erm.settings import MODEL_LOOKUPS, RootModel
 from erm.utils import get_queryset_for_instance
@@ -22,8 +23,11 @@ class BaseFilterView(object):
     def __init__(self, url):
         '''urls have to be in format like '/model1:instance1/model2:instance2/
         '''
-        url = url.replace('/', '')
-        model, instance = url.split(':')
+        try:
+            url = url.replace('/', '')
+            model, instance = url.split(':')
+        except:
+            raise Http404
 
         try:
             self.model = ContentType.objects.get(name__iexact=model)
@@ -32,9 +36,14 @@ class BaseFilterView(object):
                 model_name = MODEL_LOOKUPS[model]
             except KeyError:
                 raise Http404
+
             self.model = ContentType.objects.get(model=model_name)
 
-        self.instance = self.model.get_object_for_this_type(slug=instance)
+        try:
+            self.instance = self.model.get_object_for_this_type(slug=instance)
+        except ObjectDoesNotExist:
+            raise Http404
+
         self.queryset = get_queryset_for_instance(self.instance) \
             if not self.model.model_class() == RootModel else None
         self.template_name = 'erm/dynamic_detail.html' \

@@ -1,0 +1,35 @@
+{% extends 'app.html' %}
+
+{% block title %}Fehler 500 - Server Error{% endblock title %}
+
+{% block app %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">500
+                <small>Server Error</small>
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="jumbotron">
+                <h1><span class="error-500">500</span>
+                </h1>
+                <p>Der Aufruf dieser Seite <strong>{{ request_path }}</strong> verursachte einen serverweiten Fehler.</p>
+                <p>Wenn Sie mögen, wenden Sie sich bitte <a href="mailto:simon.woerpel@gmail.com">an den Administrator</a> und schildern Sie das Problem.</p>
+                <ul>
+                    <li>
+                        <a href="/">Startseite</a>
+                    </li>
+                    <li>
+                        <a href="/karte/">Zur Landkarte</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock app %}

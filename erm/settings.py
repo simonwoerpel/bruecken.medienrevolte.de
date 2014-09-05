@@ -37,6 +37,7 @@ AGGREGATORS = [{
 # have to define `MODEL_LOOKUPS` as a  to get valid models by given slug in urls
 MODEL_LOOKUPS = {
     'bruecke': 'bridge',
+    'strecke': 'route',
 }
 
 

@@ -59,8 +59,8 @@ class Status(AbstractNameSlugModel):
 
 class Route(AbstractNameSlugModel):
     class Meta:
-        verbose_name = u'Streckennummer'
-        verbose_name_plural = u'Streckennummern'
+        verbose_name = u'Strecke'
+        verbose_name_plural = u'Strecken'
         ordering = ['name']
 
 
