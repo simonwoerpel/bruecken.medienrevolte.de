@@ -66,9 +66,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
 )
 
-
-
-
 ROOT_URLCONF = 'bridges.urls'
 
 WSGI_APPLICATION = 'bridges.wsgi.application'
@@ -101,17 +98,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/dev/howto/static-files/
-# djangobower
-# https://github.com/nvbn/django-bower
-
-#BOWER_COMPONENTS_ROOT = os.path.abspath(os.path.join(BASE_DIR,
-#                                        '../nenv/bower_components/'))
-
-#BOWER_PATH = os.path.abspath(os.path.join(BASE_DIR, '../nenv/bin/bower'))
-
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -119,12 +105,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'djangobower.finders.BowerFinder',
 )
-
-#STATICFILES_DIRS = (
-#    BOWER_COMPONENTS_ROOT,
-#)
 
 MEDIA_URL = '/media/'
 
