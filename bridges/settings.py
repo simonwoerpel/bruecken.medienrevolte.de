@@ -17,11 +17,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bruecken.medienrevolte.de', ]
 
 SITE_ID = 1
 
@@ -70,18 +70,13 @@ ROOT_URLCONF = 'bridges.urls'
 
 WSGI_APPLICATION = 'bridges.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'bridges',
-        'USER': 'bridges',
-        'PASSWORD': DB_PASSWORD,
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.contrib.gis.db.backends.spatialite',
+        'NAME': os.path.join(BASE_DIR, 'db.spatialite'),
     }
 }
 
@@ -110,3 +105,5 @@ STATICFILES_FINDERS = (
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+from .local_settings import *
