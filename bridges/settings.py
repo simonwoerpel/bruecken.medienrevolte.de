@@ -7,15 +7,6 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
-
-# SECURITY WARNING: keep the secret key used in production secret!
-with open('/etc/django_secrets/bridges/secret_key.txt') as f:
-    SECRET_KEY = f.read().strip()
-
-
-with open('/etc/django_secrets/bridges/db_password.txt') as f:
-    DB_PASSWORD = f.read().strip()
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
