@@ -1,2 +1,2 @@
 # bruecken.medienrevolte.de
-https://bruecken.medienrevolte.de
+http://bruecken.medienrevolte.de
