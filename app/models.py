@@ -12,7 +12,6 @@ data: https://docs.google.com/spreadsheets/d/1z2zpPexIcGagV9qGeeIRct0u5BfMOdHut6
 
 """
 
-from django.utils.text import slugify
 from django.db import models
 from django.contrib.gis.db import models as gismodels
 from django.contrib.sites.models import Site
@@ -94,7 +93,7 @@ class Bridge(gismodels.Model):
         return geoutils.get_json(self)
 
     def get_absolute_url(self):
-        return u'http://' + Site.objects.get_current().domain + \
+        return u'https://' + Site.objects.get_current().domain + \
             u'/bruecke:%s/' % self.slug
 
     class Meta:

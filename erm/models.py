@@ -17,5 +17,5 @@ class AbstractNameSlugModel(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return u'http://' + Site.objects.get_current().domain + u'/%s:%s/' % \
+        return u'https://' + Site.objects.get_current().domain + u'/%s:%s/' % \
             (slugify(self._meta.verbose_name), self.slug)

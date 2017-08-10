@@ -10,33 +10,33 @@ function initmap() {
         alert ("This browser does not support HTTP Request");
         return;
     }
-    
+
     function GetXmlHttpObject() {
         if (window.XMLHttpRequest) { return new XMLHttpRequest(); }
         if (window.ActiveXObject)  { return new ActiveXObject("Microsoft.XMLHTTP"); }
         return null;
     }
-    
-    
+
+
 	// set up the map
 	map = new L.Map('map_index', {
         attributionControl: false,
         fullscreenControl: true
     }).setView([51.3324, 8.4430], 9);
 
-    L.tileLayer('http://map.bruecken.medienrevolte.de/{z}/{x}/{y}.png', {
-        attribution: 'Karte realisiert von <a href="http://medienrevolte.de">medienrevolte.de</a>',
+    L.tileLayer('https://tiles.medienrevolte.de/mr-bruecken/{z}/{x}/{y}.png', {
+        attribution: 'Karte realisiert von <a href="https://medienrevolte.de">medienrevolte.de</a>',
         maxZoom: 12,
         minZoom: 6
     }).addTo(map);
-    
 
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2ltb253b2VycGVsIiwiYSI6ImNqNjZoeGowdjI5d3Uyd3BvNHplejBjaDYifQ.gBUszUanUQRjqjYSaj-Law', {
         minZoom: 13,
         maxZoom: 16,
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map); 
-    
+    }).addTo(map);
+
     function ZoomHandler() {
         var currentZoom = map.getZoom();
         switch (currentZoom) {
@@ -67,8 +67,8 @@ function initmap() {
     map.on('exitFullscreen', function(){
         if(window.console) window.console.log('exitFullscreen');
     });
-    
-    
+
+
     function askForMarkers() {
         // request the marker info with AJAX for the current bounds
         var currentZoom = map.getZoom();
@@ -80,8 +80,8 @@ function initmap() {
         ajaxRequest.open('GET', msg, true);
         ajaxRequest.send(null);
     }
-    
-    
+
+
     function stateChanged() {
         // if AJAX returned a list of markers, add them to the map
         if (ajaxRequest.readyState == 4) {
