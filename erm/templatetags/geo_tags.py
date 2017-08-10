@@ -9,7 +9,7 @@ geo related templatetags
 
 
 from django import template
-from django.contrib.gis.measure import D
+# from django.contrib.gis.measure import D
 from erm.settings import RootModel
 
 
@@ -27,12 +27,12 @@ def nearby(instance, n=10):
         }
 
     else:
-        ref = instance.geom
-        return {'object_list': RootModel.objects
-                               .exclude(geom__isnull=True)
-                               .exclude(id=instance.id)
-                               .filter(geom__distance_lte=(ref, D(km=100)))
-                               .distance(ref).order_by('distance')[1:n+1],
+        # ref = instance.geom
+        return {'object_list': RootModel.objects.order_by('?')[:n+1]
+                               # .exclude(geom__isnull=True)
+                               # .exclude(id=instance.id)
+                               # .filter(geom__distance_lte=(ref, D(km=100)))
+                               # .distance(ref).order_by('distance')[1:n+1],
         }
 
 
