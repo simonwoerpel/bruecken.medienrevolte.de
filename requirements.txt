@@ -1,5 +1,5 @@
-awesome-slugify==1.6
-Django==1.9.13
-django-bootstrap3==9.0.0
-django-geojson==2.10.0
+awesome-slugify
+Django
+django-bootstrap3
+django-geojson
 Pillow

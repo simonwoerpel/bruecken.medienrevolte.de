@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from erm.views.dynamic import BaseFilterView
 from erm.settings import RootModel
@@ -31,9 +30,8 @@ class RootModelList(ListView):
 
 
 def index(request):
-    return render_to_response('erm/index.html',
-                              context_instance=RequestContext(request))
+    return render(request, 'erm/index.html')
 
 
 def show_map(request):
-    return render_to_response('erm/geo/map.html')
+    return render(request, 'erm/geo/map.html')
