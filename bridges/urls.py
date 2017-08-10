@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from django.contrib import admin
+# from django.contrib import admin
 from djgeojson.views import TiledGeoJSONLayerView, GeoJSONLayerView
 from erm.settings import RootModel
 
@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'bridges.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    # url(r'^admin/', include(admin.site.urls)),
     url(r'^karte/', 'erm.views.base.show_map'),
     url(r'^tilegeojson/(?P<z>\d+)/(?P<x>\d+)/(?P<y>\d+).geojson$',
         TiledGeoJSONLayerView.as_view(model=RootModel), name='tilegeojson'),
