@@ -12,7 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.contenttypes.models import ContentType
 from erm.settings import MODEL_LOOKUPS, RootModel
 from erm.utils import get_queryset_for_instance
-from erm.views.charts import get_charts_for_instance
+# from erm.views.charts import get_charts_for_instance
 
 
 class BaseFilterView(object):
@@ -30,7 +30,7 @@ class BaseFilterView(object):
             raise Http404
 
         try:
-            self.model = ContentType.objects.get(name__iexact=model)
+            self.model = ContentType.objects.get(model__iexact=model)
         except ContentType.DoesNotExist:
             try:
                 model_name = MODEL_LOOKUPS[model]

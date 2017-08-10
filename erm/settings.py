@@ -38,6 +38,9 @@ AGGREGATORS = [{
 MODEL_LOOKUPS = {
     'bruecke': 'bridge',
     'strecke': 'route',
+    'bundesland': 'state',
+    'zustandskategorie': 'status',
+    'netzsegment': 'segment'
 }
 
 
