@@ -21,7 +21,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['bruecken.medienrevolte.de', ]
+ALLOWED_HOSTS = ['127.0.0.1', 'bruecken.medienrevolte.de', ]
 
 SITE_ID = 1
 
@@ -108,9 +108,6 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-SPATIALITE_LIBRARY_PATH = 'mod_spatialite'
+# SPATIALITE_LIBRARY_PATH = 'mod_spatialite'
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+from .local_settings import *
