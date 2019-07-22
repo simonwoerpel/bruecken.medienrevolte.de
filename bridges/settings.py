@@ -9,19 +9,25 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+
+def get_env(x, y=None):
+    return os.environ.get(x, y)
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = get_env('DJANGO_DEBUG', 'false') == 'true'
+
+SECRET_KEY = get_env('DJANGO_SECRET_KEY', ')sk24e10sa*a3)x$f123g5i_-6_6tzemdd_+znhv54ki7=c^xc')
 
 # TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'bruecken.medienrevolte.de', ]
+ALLOWED_HOSTS = [get_env('DJANGO_ALLOWED_HOSTS', '*')]
 
 SITE_ID = 1
 
@@ -101,7 +107,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "../static")
+STATIC_ROOT = get_env('STATIC_ROOT', os.path.join(BASE_DIR, '../static'))
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -110,8 +116,24 @@ STATICFILES_FINDERS = (
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = get_env('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 
 # SPATIALITE_LIBRARY_PATH = 'mod_spatialite'
 
-from .local_settings import *
+if not DEBUG:
+    CACHES = {
+        'default': {
+            # 'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+            # 'LOCATION': '127.0.0.1:11211',
+            'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+            'LOCATION': '/tmp/django_cache/bridges',
+            'TIMEOUT': None,
+            'KEY_PREFIX': 'mr_bridges',
+        }
+    }
+
+
+try:
+    from .local_settings import *  # noqa
+except ImportError:
+    pass
